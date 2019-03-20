@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SearchBar = ({ handleSort }) => {
+const SearchBar = ({ handleSort, selected }) => {
 
   const handleChange = (e) => {
     // debugger
@@ -12,11 +12,11 @@ const SearchBar = ({ handleSort }) => {
 
       <strong>Sort by:</strong>
       <label>
-        <input type="radio" value="Alphabetically" checked={null} onChange={handleChange}/>
+        <input type="radio" value="Alphabetically" checked={selected==='Alphabetically'} onChange={handleChange}/>
         Alphabetically
       </label>
       <label>
-        <input type="radio" value="Price" checked={null} onChange={handleChange}/>
+        <input type="radio" value="Price" checked={selected==='Price'} onChange={handleChange}/>
         Price
       </label>
       <br/>

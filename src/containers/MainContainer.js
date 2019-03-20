@@ -9,6 +9,7 @@ class MainContainer extends Component {
     stocks: [],
     purchasedStocks: [],
     filterStocks: [],
+    selected: '',
   }
 
   componentDidMount() {
@@ -38,12 +39,15 @@ class MainContainer extends Component {
 
   handleSort = (e) => {
     let order;
+    let selected = ''
 
     if (e === 'Alphabetically') {
+      selected = 'Alphabetically'
       order = this.state.stocks.sort((stock1,stock2) => {
         return stock1.name.localeCompare(stock2.name)
       })
     } else if (e === 'Price') {
+      selected = 'Price'
       order = this.state.stocks.sort((stock1,stock2) => {
         return stock1.price - stock2.price
       })
@@ -56,14 +60,15 @@ class MainContainer extends Component {
     }
     console.log(order)
     this.setState({
-      filterStocks: order
+      filterStocks: order,
+      selected
     })
   }
 
   render() {
     return (
       <div>
-        <SearchBar handleSort={this.handleSort}/>
+        <SearchBar handleSort={this.handleSort} selected={this.state.selected}/>
           <div className="row">
             <div className="col-8">
               <StockContainer stocks={this.state.filterStocks} buyStock={this.buyStock}/>
