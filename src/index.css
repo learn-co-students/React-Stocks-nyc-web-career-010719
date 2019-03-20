@@ -17,3 +17,8 @@ h2{
   margin: 0 auto;
   text-align: center;
 }
+
+.search {
+  padding: 10px;
+  margin: 10px;
+}
