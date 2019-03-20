@@ -5,10 +5,12 @@ class PortfolioContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="border">
         <h2>My Portfolio</h2>
           {
-            //render your portfolio stocks here
+            this.props.portfolio.map( stock => {
+              return <Stock stock={stock} addOrRemove={this.props.removeFromPortfolio}/>
+            })
           }
       </div>
     );
