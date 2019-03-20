@@ -39,7 +39,7 @@ class MainContainer extends Component {
 
   sortStocks = (value) => {
     if (value === "Alphabetically") {
-      let sort = [...this.state.stocks].sort((a,b) => {
+      let sort = [...this.state.sorted].sort((a,b) => {
         var x = a.ticker.toLowerCase()
         var y = b.ticker.toLowerCase()
         if (x < y) {return -1}
@@ -48,7 +48,7 @@ class MainContainer extends Component {
       })
       this.setState({sorted: sort})
     } else if (value === "Price"){
-      let sort = [...this.state.stocks].sort((a,b) => {
+      let sort = [...this.state.sorted].sort((a,b) => {
         var x = a.price
         var y = b.price
         if (x < y) {return -1}
@@ -62,12 +62,11 @@ class MainContainer extends Component {
   }
 
   filterStocks = (value) => {
-    let filter = [...this.state.stocks].filter(s => s.type === value)
+    let filter = [...this.state.sorted].filter(s => s.type === value)
     this.setState({sorted: filter})
   }
 
   render() {
-    console.log(this.state.portfolio);
     return (
       <div>
         <SearchBar sortStocks={this.sortStocks} filterStocks={this.filterStocks}/>
