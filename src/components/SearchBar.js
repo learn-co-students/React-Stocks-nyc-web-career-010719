@@ -1,32 +1,54 @@
 import React from 'react';
 
-const SearchBar = () => {
-  return (
-    <div>
+class SearchBar extends React.Component {
 
-      <strong>Sort by:</strong>
-      <label>
-        <input type="radio" value="Alphabetically" checked={null} onChange={null}/>
-        Alphabetically
-      </label>
-      <label>
-        <input type="radio" value="Price" checked={null} onChange={null}/>
-        Price
-      </label>
-      <br/>
+  state = {
+    sortA: false,
+    sortP: false,
+    filter: ""
+  }
 
-      <label>
-        <strong>Filter:</strong>
-        <select onChange={null}>
-          <option value="Tech">Tech</option>
-          <option value="Sportswear">Sportswear</option>
-          <option value="Finance">Finance</option>
-        </select>
-      </label>
+  handleCheckboxChange = (e) => {
+    if (e.target.value === "Alphabetically") {
+      this.setState({sortA: !this.state.sortA})
+    } else {
+      this.setState({sortP: !this.state.sortB})
+    }
+    this.props.sortStocks(e.target.value)
+  }
+
+  handleFilter = (e) => {
+    this.setState({filter: e.target.value})
+    this.props.filterStocks(e.target.value)
+  }
+
+  render() {
+    return (
+      <div>
+        <strong>Sort by:</strong>
+        <label>
+          <input type="radio" value="Alphabetically" checked={this.state.sortA} onChange={this.handleCheckboxChange}/>
+          Alphabetically
+        </label>
+        <label>
+          <input type="radio" value="Price" checked={this.state.sortB} onChange={this.handleCheckboxChange}/>
+          Price
+        </label>
+        <br/>
+
+        <label>
+          <strong>Filter:</strong>
+          <select onChange={this.handleFilter}>
+            <option value="Tech">Tech</option>
+            <option value="Sportswear">Sportswear</option>
+            <option value="Finance">Finance</option>
+          </select>
+        </label>
 
 
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 
